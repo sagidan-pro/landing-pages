@@ -102,8 +102,6 @@ a{color:inherit}.shell{width:min(1500px,calc(100% - 14px));margin:0 auto;padding
   color:#0b0b0b
 }
 .booking-card .sub{display:none}
-#sbw_widget{border-radius:16px;overflow:hidden}
-#sbw_widget iframe{border:0!important;background:transparent!important}
 .field{margin-bottom:18px} label{
   display:block;
   margin:0 0 8px;
@@ -524,9 +522,29 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 <h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1></div>
   <div class="booking-area">
     <div class="booking-card">
-      <h2>קביעת תור</h2>
-      <p class="sub">בחרו שירות, יום ושעה</p>
-      <div id="sbw_widget"></div>
+      <div id="formBox">
+        <h2>קביעת תור</h2>
+        <p class="sub">בחרו שירות, יום ושעה</p>
+        <form id="bookingForm" name="barber-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="barber-booking">
+          <p style="display:none"><label>אל תמלאו: <input name="bot-field"></label></p>
+          <div class="field">
+            <label>מה תרצו?</label>
+            <div class="service-grid">
+              <label class="service-option"><input type="radio" name="service" value="תספורת" checked required><span>תספורת</span></label>
+              <label class="service-option"><input type="radio" name="service" value="תספורת + זקן" required><span>תספורת + זקן</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="name">שם מלא</label><input id="name" name="name" type="text" autocomplete="name" placeholder="השם שלך" required></div>
+          <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" required></div>
+          <div class="row">
+            <div class="field"><label for="date">יום</label><input id="date" name="date" type="date" required></div>
+            <div class="field"><label for="time">שעה</label><select id="time" name="time" required><option value="">בחרו שעה</option></select></div>
+          </div>
+          <button class="submit" type="submit">קביעת התור</button>
+        </form>
+      </div>
+      <div class="success" id="successBox"><div class="check">✓</div><h3>התור נשלח</h3><p id="successText">קיבלנו את הפרטים שלך.</p></div>
     </div>
   </div>
 </section>
@@ -578,6 +596,23 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 </main>
 
 <script>
+const dateInput=document.getElementById('date');
+const timeSelect=document.getElementById('time');
+const form=document.getElementById('bookingForm');
+const formBox=document.getElementById('formBox');
+const successBox=document.getElementById('successBox');
+const successText=document.getElementById('successText');
+const START_HOUR=9, END_HOUR=19, INTERVAL_MINUTES=30;
+function pad(n){return String(n).padStart(2,'0')}
+function setMinDate(){const now=new Date();dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`}
+function fillTimes(){timeSelect.innerHTML='<option value="">בחרו שעה</option>';for(let h=START_HOUR;h<END_HOUR;h++){for(let m=0;m<60;m+=INTERVAL_MINUTES){const value=`${pad(h)}:${pad(m)}`;const opt=document.createElement('option');opt.value=value;opt.textContent=value;timeSelect.appendChild(opt)}}}
+function encode(data){return Object.keys(data).map(key=>encodeURIComponent(key)+'='+encodeURIComponent(data[key])).join('&')}
+setMinDate();fillTimes();
+form.addEventListener('submit',async(e)=>{e.preventDefault();const data=new FormData(form);const payload={};data.forEach((v,k)=>payload[k]=v);
+try{const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)});if(!res.ok)throw new Error('submit failed');
+successText.textContent=`${payload.service} · ${payload.date} · ${payload.time}`;formBox.style.display='none';successBox.style.display='block';
+}catch(err){alert('לא הצלחנו לשלוח כרגע. נסו שוב בעוד רגע.')}})
+
 /* --- reel carousel behavior --- */
 (function(){
   const grid = document.getElementById('reelGrid');
@@ -658,10 +693,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     });
   });
 })();
-</script>
-<script src="//widget.simplybook.me/v2/widget/widget.js" type="text/javascript"></script>
-<script type="text/javascript">
-    var widget = new SimplybookWidget({"widget_type":"iframe","url":"https:\/\/httpspeacefulyoutiaobc67d8netlifyapp.simplybook.me","theme":"minimal","theme_settings":{"timeline_hide_unavailable":"1","hide_past_days":"0","timeline_show_end_time":"0","timeline_modern_display":"as_slots","nav_bg_color":"#f2efe8","sb_base_color":"#f2efe8","display_item_mode":"block","body_bg_color":"#f2efe8","sb_review_image":"","dark_font_color":"#0b0b0b","light_font_color":"#ffffff","btn_color_1":"#0b0b0b","sb_company_label_color":"#777168","hide_img_mode":"1","show_sidebar":"0","sb_busy":"#e0a99a","sb_available":"#8fae74"},"timeline":"modern","datepicker":"top_calendar","is_rtl":true,"app_config":{"clear_session":0,"allow_switch_to_ada":0,"predefined":[]},"container_id":"sbw_widget"});
 </script>
 </body>
 </html>
