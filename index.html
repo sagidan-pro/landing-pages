@@ -175,6 +175,8 @@ input:focus,select:focus{
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18)
 }
 .submit:hover{transform:translateY(-1px);background:rgba(36,36,36,.92)}
+.submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+select:disabled{opacity:.65}
 .success{display:none;padding:36px 12px;text-align:center}.success .check{width:62px;height:62px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 18px;font-size:28px;font-weight:800}
 .success h3{margin:0 0 8px;font-family:"Frank Ruhl Libre",serif;font-size:30px}.success p{margin:0;color:var(--muted)}
 .lookbook{padding:58px 0 18px}.section-kicker{font-size:12px;color:var(--muted);margin-bottom:8px}
@@ -525,9 +527,9 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
       <div id="formBox">
         <h2>קביעת תור</h2>
         <p class="sub">בחרו שירות, יום ושעה</p>
-        <form id="bookingForm" name="barber-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="barber-booking">
-          <p style="display:none"><label>אל תמלאו: <input name="bot-field"></label></p>
+        <form id="bookingForm" name="barber-booking">
+          
+          
           <div class="field">
             <label>מה תרצו?</label>
             <div class="service-grid">
@@ -596,22 +598,99 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 </main>
 
 <script>
+
 const dateInput=document.getElementById('date');
 const timeSelect=document.getElementById('time');
 const form=document.getElementById('bookingForm');
 const formBox=document.getElementById('formBox');
 const successBox=document.getElementById('successBox');
 const successText=document.getElementById('successText');
-const START_HOUR=9, END_HOUR=19, INTERVAL_MINUTES=30;
+const submitBtn=form.querySelector('.submit');
+
 function pad(n){return String(n).padStart(2,'0')}
-function setMinDate(){const now=new Date();dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`}
-function fillTimes(){timeSelect.innerHTML='<option value="">בחרו שעה</option>';for(let h=START_HOUR;h<END_HOUR;h++){for(let m=0;m<60;m+=INTERVAL_MINUTES){const value=`${pad(h)}:${pad(m)}`;const opt=document.createElement('option');opt.value=value;opt.textContent=value;timeSelect.appendChild(opt)}}}
-function encode(data){return Object.keys(data).map(key=>encodeURIComponent(key)+'='+encodeURIComponent(data[key])).join('&')}
-setMinDate();fillTimes();
-form.addEventListener('submit',async(e)=>{e.preventDefault();const data=new FormData(form);const payload={};data.forEach((v,k)=>payload[k]=v);
-try{const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)});if(!res.ok)throw new Error('submit failed');
-successText.textContent=`${payload.service} · ${payload.date} · ${payload.time}`;formBox.style.display='none';successBox.style.display='block';
-}catch(err){alert('לא הצלחנו לשלוח כרגע. נסו שוב בעוד רגע.')}})
+function setMinDate(){
+  const now=new Date();
+  dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+}
+setMinDate();
+
+async function loadAvailability(){
+  const date=dateInput.value;
+  const service=form.querySelector('input[name="service"]:checked')?.value || '';
+  timeSelect.innerHTML='<option value="">טוען שעות...</option>';
+  timeSelect.disabled=true;
+
+  if(!date){
+    timeSelect.innerHTML='<option value="">בחרו קודם יום</option>';
+    return;
+  }
+
+  try{
+    const params=new URLSearchParams({date,service});
+    const res=await fetch(`/.netlify/functions/availability?${params.toString()}`);
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error || 'availability failed');
+
+    timeSelect.innerHTML='<option value="">בחרו שעה</option>';
+    if(!data.slots?.length){
+      timeSelect.innerHTML='<option value="">אין שעות פנויות ביום הזה</option>';
+      return;
+    }
+
+    data.slots.forEach(slot=>{
+      const opt=document.createElement('option');
+      opt.value=slot;
+      opt.textContent=slot;
+      timeSelect.appendChild(opt);
+    });
+  }catch(err){
+    console.error(err);
+    timeSelect.innerHTML='<option value="">לא הצלחנו לטעון שעות</option>';
+  }finally{
+    timeSelect.disabled=false;
+  }
+}
+
+dateInput.addEventListener('change',loadAvailability);
+form.querySelectorAll('input[name="service"]').forEach(el=>el.addEventListener('change',()=>{
+  if(dateInput.value) loadAvailability();
+}));
+
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const fd=new FormData(form);
+  const payload=Object.fromEntries(fd.entries());
+
+  submitBtn.disabled=true;
+  const oldText=submitBtn.textContent;
+  submitBtn.textContent='בודקים ומאשרים...';
+
+  try{
+    const res=await fetch('/.netlify/functions/book',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const data=await res.json();
+
+    if(res.status===409){
+      alert('השעה הזאת נתפסה בדיוק עכשיו. בחרו שעה אחרת.');
+      await loadAvailability();
+      return;
+    }
+    if(!res.ok) throw new Error(data.error || 'booking failed');
+
+    successText.textContent=`${payload.service} · ${payload.date} · ${payload.time}`;
+    formBox.style.display='none';
+    successBox.style.display='block';
+  }catch(err){
+    console.error(err);
+    alert('לא הצלחנו לקבוע את התור כרגע. נסו שוב בעוד רגע.');
+  }finally{
+    submitBtn.disabled=false;
+    submitBtn.textContent=oldText;
+  }
+});
 
 /* --- reel carousel behavior --- */
 (function(){
