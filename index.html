@@ -10,11 +10,37 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600&family=Frank+Ruhl+Libre:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0b0b0b;--paper:#f2efe8;--muted:#777168;--line:#d7d0c5;--lime:#c7ff3d}
+:root{--ink:#0b0b0b;--paper:#f2efe8;--muted:#777168;--line:#d7d0c5;--lime:#c7ff3d;
+  --glass-bg:rgba(255,255,255,.14);--glass-bg-strong:rgba(255,255,255,.22);
+  --glass-border:rgba(255,255,255,.38);--glass-highlight:rgba(255,255,255,.55)}
 *{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:"Assistant",Arial,sans-serif;overflow-x:hidden}
+body{
+  margin:0;color:var(--ink);font-family:"Assistant",Arial,sans-serif;overflow-x:hidden;
+  background:var(--paper);
+  position:relative
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 12% 8%, #ffd9a0 0%, transparent 38%),
+    radial-gradient(circle at 85% 18%, #c7ff3d 0%, transparent 34%),
+    radial-gradient(circle at 25% 82%, #9ad4ff 0%, transparent 40%),
+    radial-gradient(circle at 90% 88%, #ffb3d1 0%, transparent 36%),
+    var(--paper);
+  filter:blur(60px) saturate(130%);
+  opacity:.55
+}
 a{color:inherit}.shell{width:min(1500px,calc(100% - 14px));margin:0 auto;padding:7px 0 36px}
-.hero{background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;position:relative}
+.hero{
+  background:rgba(11,11,11,.78);
+  backdrop-filter:blur(40px) saturate(140%);
+  -webkit-backdrop-filter:blur(40px) saturate(140%);
+  border:1px solid rgba(255,255,255,.08);
+  color:#fff;border-radius:22px;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;position:relative
+}
 .hero-brand{
   padding:34px 18px 26px;
   display:flex;
@@ -53,15 +79,16 @@ a{color:inherit}.shell{width:min(1500px,calc(100% - 14px));margin:0 auto;padding
 .booking-card{
   width:100%;
   max-width:600px;
-  background:rgba(255,255,255,.68);
-  border:1px solid rgba(11,11,11,.10);
+  background:var(--glass-bg-strong);
+  border:1px solid var(--glass-border);
   border-radius:28px;
   padding:26px 22px 22px;
   box-shadow:
-    0 24px 70px rgba(44,33,18,.12),
-    inset 0 1px 0 rgba(255,255,255,.75);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+    0 24px 70px rgba(44,33,18,.16),
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(28px) saturate(180%);
+  -webkit-backdrop-filter:blur(28px) saturate(180%);
   position:relative;
   overflow:hidden
 }
@@ -112,13 +139,16 @@ input:focus,select:focus{
   justify-content:center;
   min-height:64px;
   padding:12px 10px;
-  border:1px solid #bdb6aa;
-  background:transparent;
+  border:1px solid var(--glass-border);
+  background:var(--glass-bg);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   border-radius:999px;
   font-weight:700;
   cursor:pointer;
   transition:.2s;
-  text-align:center
+  text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5)
 }
 .service-option input:checked + span{
   background:var(--ink);
@@ -129,9 +159,11 @@ input:focus,select:focus{
 .row{display:grid;grid-template-columns:1fr;gap:0}
 .submit{
   width:100%;
-  border:0;
+  border:1px solid rgba(255,255,255,.14);
   border-radius:999px;
-  background:var(--ink);
+  background:rgba(11,11,11,.88);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
   color:#fff;
   min-height:64px;
   padding:17px 22px;
@@ -139,27 +171,68 @@ input:focus,select:focus{
   font-weight:800;
   cursor:pointer;
   transition:.2s;
-  margin-top:8px
+  margin-top:8px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18)
 }
-.submit:hover{transform:translateY(-1px);background:#242424}
+.submit:hover{transform:translateY(-1px);background:rgba(36,36,36,.92)}
 .success{display:none;padding:36px 12px;text-align:center}.success .check{width:62px;height:62px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 18px;font-size:28px;font-weight:800}
 .success h3{margin:0 0 8px;font-family:"Frank Ruhl Libre",serif;font-size:30px}.success p{margin:0;color:var(--muted)}
 .lookbook{padding:58px 0 18px}.section-kicker{font-size:12px;color:var(--muted);margin-bottom:8px}
 .section-title{margin:0 0 24px;font-family:"Frank Ruhl Libre",serif;font-size:clamp(52px,15vw,88px);line-height:.92;letter-spacing:-.05em}
-.reel-grid{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}.reel-grid::-webkit-scrollbar{display:none}
-.reel{flex:0 0 78vw;max-width:340px;aspect-ratio:9/16;position:relative;overflow:hidden;border-radius:18px;background:linear-gradient(160deg,#242424,#0d0d0d 72%);color:#fff;scroll-snap-align:start}
-.reel video{width:100%;height:100%;object-fit:cover;display:block}.placeholder{position:absolute;inset:0;display:grid;place-items:center;color:#707070;font-size:12px}
-.instagram{margin-top:28px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#fff}
+
+/* --- reel carousel (story-style, snap scroll) --- */
+.reel-grid{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
+.reel-grid::-webkit-scrollbar{display:none}
+.reel{
+  flex:0 0 78vw;max-width:340px;aspect-ratio:9/16;position:relative;overflow:hidden;border-radius:18px;
+  background:linear-gradient(160deg,#242424,#0d0d0d 72%);color:#fff;scroll-snap-align:center;
+  opacity:.45;transition:opacity .25s ease;
+  border:1px solid var(--glass-border);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25), 0 14px 34px rgba(0,0,0,.18)
+}
+.reel.is-active{opacity:1}
+.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.placeholder{position:absolute;inset:0;display:grid;place-items:center;color:#707070;font-size:12px}
+.reel-mute{
+  position:absolute;bottom:10px;left:10px;z-index:2;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.16);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3)
+}
+.reel-mute svg{width:16px;height:16px;display:block}
+.reel-dots{display:flex;justify-content:center;gap:6px;margin-top:12px}
+.reel-dot{width:6px;height:6px;border-radius:50%;background:var(--line);transition:width .2s,background .2s}
+.reel-dot.is-active{width:16px;border-radius:3px;background:var(--ink)}
+
+.instagram{
+  margin-top:28px;border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;
+  background:var(--glass-bg);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:inset 0 1px 0 var(--glass-highlight)
+}
 .instagram a{text-decoration:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;font-weight:700;font-size:18px}
-.ig-icon{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:20px;flex:0 0 auto}
-.location{margin-top:28px}.map-wrap{min-height:330px;border-radius:22px;overflow:hidden;box-shadow:0 18px 48px rgba(0,0,0,.08);background:#ddd}
+.ig-icon{width:42px;height:42px;border-radius:12px;border:1px solid var(--glass-border);display:grid;place-items:center;font-size:20px;flex:0 0 auto}
+.location{margin-top:28px}
+.map-wrap{
+  min-height:330px;border-radius:22px;overflow:hidden;background:#ddd;
+  border:1px solid var(--glass-border);
+  box-shadow:0 18px 48px rgba(0,0,0,.10), inset 0 1px 0 var(--glass-highlight)
+}
 .map-wrap iframe{width:100%;height:100%;min-height:330px;border:0;display:block}.location-action{padding-top:16px}
-.nav-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:66px;border-radius:16px;background:var(--ink);color:#fff;text-decoration:none;font-size:23px;font-weight:800}
+.nav-btn{
+  display:flex;align-items:center;justify-content:center;width:100%;min-height:66px;border-radius:16px;
+  background:rgba(11,11,11,.88);border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+  color:#fff;text-decoration:none;font-size:23px;font-weight:800
+}
 footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 @media(min-width:760px){
 .shell{width:min(1500px,calc(100% - 30px));padding-top:15px}.hero{min-height:760px;display:grid;grid-template-columns:1.05fr .95fr;border-radius:30px}
 .hero-brand{min-height:760px;padding:40px}.brand-title{font-size:clamp(100px,11vw,175px)}.booking-area{padding:34px}.booking-card{padding:30px}
-.row{grid-template-columns:1fr 1fr;gap:10px}.reel-grid{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible}.reel{max-width:none}
+.row{grid-template-columns:1fr 1fr;gap:10px}
+.reel-grid{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible}
+.reel{max-width:none;opacity:1}
 .lookbook{padding-top:82px}.instagram a{padding:22px 26px}.map-wrap,.map-wrap iframe{min-height:440px}.nav-btn{max-width:520px;margin:0 auto;min-height:72px;font-size:27px}}
 
 .ig-top{
@@ -179,15 +252,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 }
 .ig-top:hover{transform:translateY(-2px) scale(1.03)}
 .ig-top svg{width:27px;height:27px;display:block}
-
-
-
-
-@media(min-width:760px){
-  .booking-area{align-items:center;padding:34px}
-  .booking-card{padding:0 18px}
-  
-}
 
 .booking-card:before{
   content:"";
@@ -218,11 +282,14 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   display:inline-flex;
   align-items:center;
   gap:10px;
-  background:#fff;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px) saturate(180%);
+  -webkit-backdrop-filter:blur(14px) saturate(180%);
+  border:1px solid rgba(255,255,255,.6);
   color:#111;
   border-radius:999px;
   padding:14px 24px;
-  box-shadow:0 18px 50px rgba(0,0,0,.22);
+  box-shadow:0 18px 50px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.7);
   margin-bottom:34px;
   font-family:"Assistant",Arial,sans-serif;
   font-size:24px;
@@ -245,7 +312,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   0%,100%{transform:rotate(-5deg) scale(1)}
   50%{transform:rotate(6deg) scale(1.06)}
 }
-
 
 @media(max-width:759px){
   .shell{width:100%;padding:0}
@@ -341,7 +407,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   .barber-bubble,.barber-emoji{animation:none}
 }
 
-
 @media(min-width:760px){
   .ig-top{
     top:24px;
@@ -352,7 +417,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     box-shadow:0 10px 24px rgba(0,0,0,.24);
   }
 }
-
 
 @media(min-width:760px){
   .hero{
@@ -418,7 +482,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   }
 }
 
-
 @media(max-width:759px){
   .hero-brand{
     min-height:320px;
@@ -437,15 +500,11 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     padding:22px 18px 20px;
   }
 }
-
 </style>
 </head>
 <body>
 <main class="shell">
 <section class="hero">
-
-
-
   <div class="hero-brand">
 <a class="ig-top" href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener" aria-label="Instagram">
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -493,13 +552,41 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 <section class="lookbook">
   <div class="section-kicker">עבודות אחרונות</div>
   <h2 class="section-title">עבודות<br>אחרונות.</h2>
-  <div class="reel-grid">
-    <article class="reel"><div class="placeholder">וידאו 01</div></article>
-    <article class="reel"><div class="placeholder">וידאו 02</div></article>
-    <article class="reel"><div class="placeholder">וידאו 03</div></article>
-    <article class="reel"><div class="placeholder">וידאו 04</div></article>
+
+  <!--
+    כל reel הוא video עם data-src (לא src) -- הוידאו נטען רק כש-IntersectionObserver
+    רואה שהוא קרוב למסך, ומתחיל לנגן אוטומטית רק כשהוא הכרטיס הכי מרכזי.
+    החליפו את data-src בנתיב האמיתי לכל וידאו, ואת poster בתמונת פריים ראשון.
+  -->
+  <div class="reel-grid" id="reelGrid">
+    <article class="reel" data-index="0">
+      <video muted loop playsinline preload="none" poster="" data-src="videos/reel-01.mp4"></video>
+      <button class="reel-mute" aria-label="הפעל קול" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><line x1="16" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="16" y2="15"/></svg>
+      </button>
+    </article>
+    <article class="reel" data-index="1">
+      <video muted loop playsinline preload="none" poster="" data-src="videos/reel-02.mp4"></video>
+      <button class="reel-mute" aria-label="הפעל קול" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><line x1="16" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="16" y2="15"/></svg>
+      </button>
+    </article>
+    <article class="reel" data-index="2">
+      <video muted loop playsinline preload="none" poster="" data-src="videos/reel-03.mp4"></video>
+      <button class="reel-mute" aria-label="הפעל קול" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><line x1="16" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="16" y2="15"/></svg>
+      </button>
+    </article>
+    <article class="reel" data-index="3">
+      <video muted loop playsinline preload="none" poster="" data-src="videos/reel-04.mp4"></video>
+      <button class="reel-mute" aria-label="הפעל קול" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><line x1="16" y1="9" x2="21" y2="15"/><line x1="21" y1="9" x2="16" y2="15"/></svg>
+      </button>
+    </article>
   </div>
+  <div class="reel-dots" id="reelDots"></div>
 </section>
+
 <section class="location">
   <div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.8994022476236!2d34.78045333601136!3d32.071969516875924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b8266306a0d%3A0xe6ea880f447b9453!2sShlomo%20Ibn%20Gabirol%20St%209%2C%20Tel%20Aviv-Jaffa!5e0!3m2!1sen!2sil!4v1789370962857!5m2!1sen!2sil" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <div class="location-action"><a class="nav-btn" href="https://www.google.com/maps/dir/?api=1&destination=Shlomo+Ibn+Gabirol+St+9%2C+Tel+Aviv-Jaffa" target="_blank" rel="noopener">נווטו אליי</a></div>
@@ -525,6 +612,87 @@ form.addEventListener('submit',async(e)=>{e.preventDefault();const data=new Form
 try{const res=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encode(payload)});if(!res.ok)throw new Error('submit failed');
 successText.textContent=`${payload.service} · ${payload.date} · ${payload.time}`;formBox.style.display='none';successBox.style.display='block';
 }catch(err){alert('לא הצלחנו לשלוח כרגע. נסו שוב בעוד רגע.')}})
+
+/* --- reel carousel behavior --- */
+(function(){
+  const grid = document.getElementById('reelGrid');
+  const reels = Array.from(grid.querySelectorAll('.reel'));
+  const dotsWrap = document.getElementById('reelDots');
+  const videos = reels.map(r => r.querySelector('video'));
+
+  // build dots (hidden on desktop grid layout via CSS if you prefer, left visible by default)
+  reels.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'reel-dot' + (i === 0 ? ' is-active' : '');
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  // lazy-load: only set video src once it's near the viewport
+  const loadObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const video = entry.target.querySelector('video');
+        if (video.dataset.src && !video.src) {
+          video.src = video.dataset.src;
+        }
+      }
+    });
+  }, { root: null, rootMargin: '200px' });
+  reels.forEach(r => loadObserver.observe(r));
+
+  // autoplay only the reel closest to center; pause the rest
+  const playObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target.querySelector('video');
+      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { root: null, threshold: [0, 0.6, 1] });
+  reels.forEach(r => playObserver.observe(r));
+
+  // active-state opacity + dots, based on scroll position (mobile snap track)
+  function updateActive(){
+    const gridRect = grid.getBoundingClientRect();
+    const center = gridRect.left + gridRect.width / 2;
+    let closest = 0, minDist = Infinity;
+    reels.forEach((r, i) => {
+      const rect = r.getBoundingClientRect();
+      const rCenter = rect.left + rect.width / 2;
+      const dist = Math.abs(rCenter - center);
+      if (dist < minDist) { minDist = dist; closest = i; }
+      r.classList.toggle('is-active', dist < 40);
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+  }
+  reels[0].classList.add('is-active');
+
+  let scrollTimer;
+  grid.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateActive, 50);
+  });
+  window.addEventListener('resize', updateActive);
+  updateActive();
+
+  // mute/unmute toggle per reel (unmuting one mutes the others, story-style)
+  reels.forEach((reel, i) => {
+    const btn = reel.querySelector('.reel-mute');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const video = videos[i];
+      const willUnmute = video.muted;
+      videos.forEach(v => { v.muted = true; });
+      video.muted = !willUnmute;
+      reels.forEach((r, idx) => {
+        r.querySelector('.reel-mute').dataset.muted = videos[idx].muted ? 'true' : 'false';
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
