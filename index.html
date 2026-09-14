@@ -1115,6 +1115,132 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   }
 }
 
+
+/* ===== v3 refinements ===== */
+.booking-card-wow h2{margin-bottom:24px!important}
+.date-shell{
+  position:relative;
+  cursor:pointer;
+  user-select:none;
+  min-height:62px;
+  padding-inline:16px!important;
+}
+.date-shell:hover{
+  border-color:rgba(159,119,61,.42);
+  background:rgba(255,255,255,.46);
+}
+.date-shell .date-display{
+  flex:1;
+  color:#1b1916;
+  font-size:16px;
+  font-weight:650;
+  text-align:right;
+}
+.date-chevron{
+  color:#817665;
+  font-size:18px;
+  margin-inline-start:4px;
+}
+.date-shell input[type="date"]{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  opacity:0!important;
+  cursor:pointer!important;
+  border:0!important;
+  padding:0!important;
+  z-index:3;
+}
+.date-shell svg{pointer-events:none}
+.date-shell .date-display,.date-shell .date-chevron{pointer-events:none}
+
+/* Single-video story presentation */
+.lookbook{
+  max-width:620px;
+  margin-inline:auto;
+}
+.reel-grid{
+  position:relative!important;
+  display:block!important;
+  overflow:hidden!important;
+  padding:0!important;
+  border-radius:24px;
+}
+.reel{
+  display:none!important;
+  width:100%!important;
+  max-width:none!important;
+  flex:none!important;
+  aspect-ratio:9/16;
+  margin:0!important;
+  opacity:1!important;
+  border-radius:24px!important;
+  scroll-snap-align:none!important;
+}
+.reel.is-active{
+  display:block!important;
+  animation:storyFade .28s ease both;
+}
+@keyframes storyFade{
+  from{opacity:.25;transform:scale(.992)}
+  to{opacity:1;transform:scale(1)}
+}
+.story-progress{
+  display:flex;
+  gap:6px;
+  margin:12px 2px 0;
+}
+.story-progress .reel-dot{
+  flex:1;
+  height:3px;
+  width:auto!important;
+  border-radius:999px!important;
+  background:rgba(20,20,20,.14)!important;
+  overflow:hidden;
+  position:relative;
+}
+.story-progress .reel-dot.is-active{
+  background:#111!important;
+}
+.story-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:14px;
+}
+.story-nav{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  border:1px solid rgba(76,65,51,.18);
+  background:rgba(255,255,255,.34);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  color:#111;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+  transition:.2s ease;
+}
+.story-nav:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.52);
+}
+@media(min-width:760px){
+  .lookbook{max-width:520px!important}
+  .reel-grid{display:block!important}
+  .reel{display:none!important}
+  .reel.is-active{display:block!important}
+}
+@media(max-width:759px){
+  .lookbook{max-width:none;margin-inline:14px}
+  .reel-grid{overflow:hidden!important}
+  .reel{flex:none!important;width:100%!important;max-width:none!important}
+  .story-controls{margin-top:12px}
+}
+
 </style>
 </head>
 <body>
@@ -1124,10 +1250,7 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   <div class="booking-area booking-wow">
     <div class="booking-card booking-card-wow">
       <div id="formBox">
-        <div class="booking-eyebrow">TAL BITTON · BOOKING</div>
         <h2>קביעת תור</h2>
-        <p class="booking-intro">בוחרים שירות, יום ושעה פנויה. מכאן אנחנו דואגים לכל השאר.</p>
-
         <form id="bookingForm">
           <div class="field service-field">
             <label>מה תרצו?</label>
@@ -1168,10 +1291,12 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
               <label for="date">תאריך</label>
               <span class="field-note">בחרו יום פנוי</span>
             </div>
-            <div class="input-shell date-shell">
+            <label class="input-shell date-shell" for="date">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <span class="date-display" id="dateDisplay">בחרו תאריך</span>
+              <span class="date-chevron" aria-hidden="true">⌄</span>
               <input id="date" name="date" type="date" required>
-            </div>
+            </label>
           </div>
 
           <div class="field time-field">
@@ -1196,13 +1321,11 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
             <span class="submit-arrow" aria-hidden="true">←</span>
           </button>
 
-          <div class="booking-foot">TAL BITTON · BARBER · TLV</div>
-        </form>
+          </form>
       </div>
 
       <div class="success success-wow" id="successBox">
         <div class="check">✓</div>
-        <div class="booking-eyebrow">APPOINTMENT CONFIRMED</div>
         <h3>התור נקבע</h3>
         <p id="successText">נתראה בקרוב.</p>
       </div>
@@ -1229,11 +1352,9 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
       </div>
 
       <h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1>
-      <div class="brand-tagline">GOOD HAIR · BETTER YOU</div>
-    </div>
+      </div>
 
-    <div class="brand-corner">TLV <span></span></div>
-  </div>
+    </div>
 </section>
 
 
@@ -1272,7 +1393,11 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
       </button>
     </article>
   </div>
-  <div class="reel-dots" id="reelDots"></div>
+  <div class="story-progress" id="reelDots" aria-label="התקדמות סרטונים"></div>
+  <div class="story-controls" aria-hidden="false">
+    <button class="story-nav story-prev" id="storyPrev" type="button" aria-label="הסרטון הקודם">‹</button>
+    <button class="story-nav story-next" id="storyNext" type="button" aria-label="הסרטון הבא">›</button>
+  </div>
 </section>
 
 <section class="location">
@@ -1287,6 +1412,7 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 
 
 const dateInput=document.getElementById('date');
+const dateDisplay=document.getElementById('dateDisplay');
 const timeInput=document.getElementById('time');
 const timeSlots=document.getElementById('timeSlots');
 const slotsNote=document.getElementById('slotsNote');
@@ -1399,7 +1525,15 @@ async function loadAvailability(){
   }
 }
 
-dateInput.addEventListener('change',loadAvailability);
+dateInput.addEventListener('change',()=>{
+  if(dateInput.value){
+    const [y,m,d]=dateInput.value.split('-');
+    dateDisplay.textContent=`${d}/${m}/${y}`;
+  }else{
+    dateDisplay.textContent='בחרו תאריך';
+  }
+  loadAvailability();
+});
 
 form.querySelectorAll('input[name="service"]').forEach(el=>{
   el.addEventListener('change',()=>{
@@ -1451,86 +1585,98 @@ form.addEventListener('submit',async(e)=>{
   }
 });
 
-/* --- reel carousel behavior --- */
+/* --- story-style video behavior: one video at a time, no horizontal scrolling --- */
 (function(){
   const grid = document.getElementById('reelGrid');
   const reels = Array.from(grid.querySelectorAll('.reel'));
   const dotsWrap = document.getElementById('reelDots');
+  const prevBtn = document.getElementById('storyPrev');
+  const nextBtn = document.getElementById('storyNext');
   const videos = reels.map(r => r.querySelector('video'));
+  let current = 0;
 
-  // build dots (hidden on desktop grid layout via CSS if you prefer, left visible by default)
   reels.forEach((_, i) => {
     const d = document.createElement('div');
     d.className = 'reel-dot' + (i === 0 ? ' is-active' : '');
+    d.setAttribute('aria-hidden','true');
     dotsWrap.appendChild(d);
   });
   const dots = Array.from(dotsWrap.children);
 
-  // lazy-load: only set video src once it's near the viewport
-  const loadObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const video = entry.target.querySelector('video');
-        if (video.dataset.src && !video.src) {
-          video.src = video.dataset.src;
-        }
-      }
-    });
-  }, { root: null, rootMargin: '200px' });
-  reels.forEach(r => loadObserver.observe(r));
+  function ensureLoaded(i){
+    const v = videos[i];
+    if(v?.dataset.src && !v.src){
+      v.src = v.dataset.src;
+      v.load();
+    }
+  }
 
-  // autoplay only the reel closest to center; pause the rest
-  const playObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const video = entry.target.querySelector('video');
-      if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-        video.play().catch(() => {});
-      } else {
+  function showStory(index, autoplay=true){
+    current = (index + reels.length) % reels.length;
+
+    reels.forEach((reel,i)=>{
+      const active = i === current;
+      reel.classList.toggle('is-active', active);
+
+      const video = videos[i];
+      if(!video) return;
+
+      if(active){
+        ensureLoaded(i);
+        if(autoplay) video.play().catch(()=>{});
+      }else{
         video.pause();
       }
     });
-  }, { root: null, threshold: [0, 0.6, 1] });
-  reels.forEach(r => playObserver.observe(r));
 
-  // active-state opacity + dots, based on scroll position (mobile snap track)
-  function updateActive(){
-    const gridRect = grid.getBoundingClientRect();
-    const center = gridRect.left + gridRect.width / 2;
-    let closest = 0, minDist = Infinity;
-    reels.forEach((r, i) => {
-      const rect = r.getBoundingClientRect();
-      const rCenter = rect.left + rect.width / 2;
-      const dist = Math.abs(rCenter - center);
-      if (dist < minDist) { minDist = dist; closest = i; }
-      r.classList.toggle('is-active', dist < 40);
-    });
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+    dots.forEach((dot,i)=>dot.classList.toggle('is-active', i===current));
   }
-  reels[0].classList.add('is-active');
 
-  let scrollTimer;
-  grid.addEventListener('scroll', () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(updateActive, 50);
-  });
-  window.addEventListener('resize', updateActive);
-  updateActive();
+  prevBtn?.addEventListener('click',()=>showStory(current-1));
+  nextBtn?.addEventListener('click',()=>showStory(current+1));
 
-  // mute/unmute toggle per reel (unmuting one mutes the others, story-style)
-  reels.forEach((reel, i) => {
-    const btn = reel.querySelector('.reel-mute');
-    btn.addEventListener('click', (e) => {
+  reels.forEach((reel,i)=>{
+    const video = videos[i];
+    const muteBtn = reel.querySelector('.reel-mute');
+
+    video?.addEventListener('ended',()=>showStory(current+1));
+
+    muteBtn?.addEventListener('click',(e)=>{
       e.stopPropagation();
-      const video = videos[i];
       const willUnmute = video.muted;
-      videos.forEach(v => { v.muted = true; });
+      videos.forEach(v=>{ if(v) v.muted = true; });
       video.muted = !willUnmute;
-      reels.forEach((r, idx) => {
-        r.querySelector('.reel-mute').dataset.muted = videos[idx].muted ? 'true' : 'false';
+
+      reels.forEach((r,idx)=>{
+        const b = r.querySelector('.reel-mute');
+        if(b) b.dataset.muted = videos[idx]?.muted ? 'true' : 'false';
       });
     });
   });
+
+  document.addEventListener('keydown',(e)=>{
+    if(e.key === 'ArrowLeft') showStory(current+1);
+    if(e.key === 'ArrowRight') showStory(current-1);
+  });
+
+  showStory(0,false);
+
+  const section = document.querySelector('.lookbook');
+  if(section){
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          ensureLoaded(current);
+          videos[current]?.play().catch(()=>{});
+        }else{
+          videos[current]?.pause();
+        }
+      });
+    },{threshold:.45});
+    observer.observe(section);
+  }
 })();
+
 </script>
 </body>
 </html>
