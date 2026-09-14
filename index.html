@@ -1116,48 +1116,49 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 }
 
 
-/* ===== v3 refinements ===== */
-.booking-card-wow h2{margin-bottom:24px!important}
+/* ===== v6 restored form + reliable date + single story video ===== */
 .date-shell{
   position:relative;
   cursor:pointer;
   user-select:none;
-  min-height:62px;
-  padding-inline:16px!important;
+  min-height:58px;
 }
 .date-shell:hover{
   border-color:rgba(159,119,61,.42);
-  background:rgba(255,255,255,.46);
+  background:rgba(255,255,255,.42);
 }
-.date-shell .date-display{
+.date-display{
   flex:1;
-  color:#1b1916;
+  color:#191713;
   font-size:16px;
   font-weight:650;
   text-align:right;
+  pointer-events:none;
 }
 .date-chevron{
   color:#817665;
   font-size:18px;
-  margin-inline-start:4px;
+  pointer-events:none;
 }
 .date-shell input[type="date"]{
   position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
+  width:1px!important;
+  height:1px!important;
   opacity:0!important;
-  cursor:pointer!important;
-  border:0!important;
+  pointer-events:none!important;
+  inset:auto!important;
   padding:0!important;
-  z-index:3;
+  border:0!important;
 }
-.date-shell svg{pointer-events:none}
-.date-shell .date-display,.date-shell .date-chevron{pointer-events:none}
+.date-shell:focus{
+  outline:none;
+  border-color:rgba(159,119,61,.52)!important;
+  box-shadow:0 0 0 3px rgba(171,135,78,.10), inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
 
-/* Single-video story presentation */
+/* show only one video at a time */
 .lookbook{
-  max-width:620px;
+  max-width:520px;
   margin-inline:auto;
 }
 .reel-grid{
@@ -1165,40 +1166,35 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   display:block!important;
   overflow:hidden!important;
   padding:0!important;
-  border-radius:24px;
 }
 .reel{
   display:none!important;
   width:100%!important;
   max-width:none!important;
   flex:none!important;
-  aspect-ratio:9/16;
-  margin:0!important;
   opacity:1!important;
-  border-radius:24px!important;
+  margin:0!important;
   scroll-snap-align:none!important;
 }
 .reel.is-active{
   display:block!important;
-  animation:storyFade .28s ease both;
+  animation:storyFade .25s ease both;
 }
 @keyframes storyFade{
-  from{opacity:.25;transform:scale(.992)}
+  from{opacity:.2;transform:scale(.994)}
   to{opacity:1;transform:scale(1)}
 }
 .story-progress{
   display:flex;
   gap:6px;
-  margin:12px 2px 0;
+  margin-top:12px;
 }
 .story-progress .reel-dot{
   flex:1;
-  height:3px;
   width:auto!important;
+  height:3px;
   border-radius:999px!important;
   background:rgba(20,20,20,.14)!important;
-  overflow:hidden;
-  position:relative;
 }
 .story-progress .reel-dot.is-active{
   background:#111!important;
@@ -1215,52 +1211,138 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   border-radius:50%;
   border:1px solid rgba(76,65,51,.18);
   background:rgba(255,255,255,.34);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
   color:#111;
   font-size:28px;
-  line-height:1;
   cursor:pointer;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
-  transition:.2s ease;
 }
 .story-nav:hover{
   transform:translateY(-1px);
   background:rgba(255,255,255,.52);
 }
-@media(min-width:760px){
-  .lookbook{max-width:520px!important}
-  .reel-grid{display:block!important}
-  .reel{display:none!important}
-  .reel.is-active{display:block!important}
-}
 @media(max-width:759px){
   .lookbook{max-width:none;margin-inline:14px}
-  .reel-grid{overflow:hidden!important}
-  .reel{flex:none!important;width:100%!important;max-width:none!important}
-  .story-controls{margin-top:12px}
 }
 
 
-/* ===== date picker reliability fix ===== */
-.date-shell{
-  position:relative;
-  cursor:pointer;
+/* ===== v7: restore the ORIGINAL desktop proportions ===== */
+@media(min-width:760px){
+  .hero-wow{
+    direction:ltr!important;
+    grid-template-columns:45% 55%!important;
+    min-height:760px!important;
+  }
+
+  .booking-wow{
+    direction:rtl!important;
+    padding:42px 34px!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+
+  .booking-card-wow{
+    width:100%!important;
+    max-width:540px!important;
+    min-height:auto!important;
+    padding:30px 28px 26px!important;
+    border-radius:26px!important;
+    margin:0 auto!important;
+  }
+
+  .booking-card-wow h2{
+    font-size:36px!important;
+    margin-bottom:20px!important;
+  }
+
+  .booking-intro{
+    font-size:14px!important;
+    margin-bottom:20px!important;
+  }
+
+  .service-option span{
+    min-height:60px!important;
+  }
+
+  .input-grid{
+    grid-template-columns:1fr 1fr!important;
+    gap:10px!important;
+  }
+
+  .input-shell{
+    min-height:54px!important;
+  }
+
+  .booking-divider{
+    margin:4px 0 16px!important;
+  }
+
+  .date-shell{
+    min-height:56px!important;
+  }
+
+  .time-field{
+    margin-bottom:16px!important;
+  }
+
+  .slot-group{
+    grid-template-columns:72px 1fr!important;
+    gap:10px!important;
+  }
+
+  .slot-group-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:7px!important;
+  }
+
+  .slot-btn{
+    min-height:42px!important;
+    border-radius:12px!important;
+    font-size:13px!important;
+  }
+
+  .submit-wow{
+    min-height:62px!important;
+    margin-top:10px!important;
+    width:100%!important;
+  }
+
+  .brand-wow{
+    direction:rtl!important;
+    min-height:760px!important;
+    padding:60px 58px 54px!important;
+    justify-content:center!important;
+  }
+
+  .brand-wow .barber-bubble{
+    margin-bottom:26px!important;
+    font-size:24px!important;
+    padding:14px 24px!important;
+  }
+
+  .brand-wow .brand-title{
+    font-size:clamp(82px,8.7vw,148px)!important;
+    line-height:.9!important;
+    letter-spacing:-.06em!important;
+    max-width:92%!important;
+    white-space:nowrap!important;
+  }
+
+  .brand-wow .ig-top{
+    top:28px!important;
+    right:28px!important;
+    left:auto!important;
+  }
 }
-.date-shell input[type="date"]{
-  position:absolute!important;
-  width:1px!important;
-  height:1px!important;
-  opacity:0!important;
-  pointer-events:none!important;
-  inset:auto!important;
-  border:0!important;
-  padding:0!important;
+
+/* keep the form button firmly inside the card */
+.booking-card-wow form{
+  width:100%!important;
+  display:block!important;
 }
-.date-shell:focus{
-  outline:none;
-  border-color:rgba(159,119,61,.52)!important;
-  box-shadow:0 0 0 3px rgba(171,135,78,.10), inset 0 1px 0 rgba(255,255,255,.9)!important;
+.submit-wow{
+  position:static!important;
+  float:none!important;
+  transform:none;
 }
 
 </style>
@@ -1273,6 +1355,8 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     <div class="booking-card booking-card-wow">
       <div id="formBox">
         <h2>קביעת תור</h2>
+        <p class="booking-intro">בוחרים שירות, יום ושעה פנויה. מכאן אנחנו דואגים לכל השאר.</p>
+
         <form id="bookingForm">
           <div class="field service-field">
             <label>מה תרצו?</label>
@@ -1320,6 +1404,13 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
               <input id="date" name="date" type="date" required>
             </div>
           </div>
+
+          <div class="field time-field">
+            <div class="field-head time-head">
+              <div>
+                <label>בחרו שעה</label>
+                <div class="time-caption">רק שעות פנויות מוצגות כאן</div>
+              </div>
               <span class="availability-badge" id="slotsNote">בחרו תאריך</span>
             </div>
             <input id="time" name="time" type="hidden" required>
@@ -1336,7 +1427,7 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
             <span class="submit-arrow" aria-hidden="true">←</span>
           </button>
 
-          </form>
+                  </form>
       </div>
 
       <div class="success success-wow" id="successBox">
@@ -1367,9 +1458,8 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
       </div>
 
       <h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1>
-      </div>
-
-    </div>
+          </div>
+  </div>
 </section>
 
 
@@ -1408,10 +1498,10 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
       </button>
     </article>
   </div>
-  <div class="story-progress" id="reelDots" aria-label="התקדמות סרטונים"></div>
-  <div class="story-controls" aria-hidden="false">
-    <button class="story-nav story-prev" id="storyPrev" type="button" aria-label="הסרטון הקודם">‹</button>
-    <button class="story-nav story-next" id="storyNext" type="button" aria-label="הסרטון הבא">›</button>
+  <div class="story-progress" id="reelDots"></div>
+  <div class="story-controls">
+    <button class="story-nav" id="storyPrev" type="button" aria-label="הסרטון הקודם">‹</button>
+    <button class="story-nav" id="storyNext" type="button" aria-label="הסרטון הבא">›</button>
   </div>
 </section>
 
@@ -1448,7 +1538,7 @@ setMinDate();
 
 function openDatePicker(){
   try{
-    if(typeof dateInput.showPicker === 'function'){
+    if(typeof dateInput.showPicker==='function'){
       dateInput.showPicker();
     }else{
       dateInput.focus();
@@ -1466,7 +1556,6 @@ dateShell?.addEventListener('keydown',(e)=>{
     openDatePicker();
   }
 });
-
 
 function setSlotsState(type,text){
   timeInput.value='';
@@ -1623,40 +1712,38 @@ form.addEventListener('submit',async(e)=>{
   }
 });
 
-/* --- story-style video behavior: one video at a time, no horizontal scrolling --- */
+/* --- story-style video behavior: one video at a time --- */
 (function(){
-  const grid = document.getElementById('reelGrid');
-  const reels = Array.from(grid.querySelectorAll('.reel'));
-  const dotsWrap = document.getElementById('reelDots');
-  const prevBtn = document.getElementById('storyPrev');
-  const nextBtn = document.getElementById('storyNext');
-  const videos = reels.map(r => r.querySelector('video'));
-  let current = 0;
+  const grid=document.getElementById('reelGrid');
+  const reels=Array.from(grid.querySelectorAll('.reel'));
+  const dotsWrap=document.getElementById('reelDots');
+  const prevBtn=document.getElementById('storyPrev');
+  const nextBtn=document.getElementById('storyNext');
+  const videos=reels.map(r=>r.querySelector('video'));
+  let current=0;
 
-  reels.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.className = 'reel-dot' + (i === 0 ? ' is-active' : '');
-    d.setAttribute('aria-hidden','true');
-    dotsWrap.appendChild(d);
+  reels.forEach((_,i)=>{
+    const dot=document.createElement('div');
+    dot.className='reel-dot'+(i===0?' is-active':'');
+    dotsWrap.appendChild(dot);
   });
-  const dots = Array.from(dotsWrap.children);
+  const dots=Array.from(dotsWrap.children);
 
   function ensureLoaded(i){
-    const v = videos[i];
-    if(v?.dataset.src && !v.src){
-      v.src = v.dataset.src;
-      v.load();
+    const video=videos[i];
+    if(video?.dataset.src && !video.src){
+      video.src=video.dataset.src;
+      video.load();
     }
   }
 
-  function showStory(index, autoplay=true){
-    current = (index + reels.length) % reels.length;
+  function show(index,autoplay=true){
+    current=(index+reels.length)%reels.length;
 
     reels.forEach((reel,i)=>{
-      const active = i === current;
-      reel.classList.toggle('is-active', active);
-
-      const video = videos[i];
+      const active=i===current;
+      reel.classList.toggle('is-active',active);
+      const video=videos[i];
       if(!video) return;
 
       if(active){
@@ -1667,41 +1754,31 @@ form.addEventListener('submit',async(e)=>{
       }
     });
 
-    dots.forEach((dot,i)=>dot.classList.toggle('is-active', i===current));
+    dots.forEach((dot,i)=>dot.classList.toggle('is-active',i===current));
   }
 
-  prevBtn?.addEventListener('click',()=>showStory(current-1));
-  nextBtn?.addEventListener('click',()=>showStory(current+1));
+  prevBtn?.addEventListener('click',()=>show(current-1));
+  nextBtn?.addEventListener('click',()=>show(current+1));
 
   reels.forEach((reel,i)=>{
-    const video = videos[i];
-    const muteBtn = reel.querySelector('.reel-mute');
+    const video=videos[i];
+    const muteBtn=reel.querySelector('.reel-mute');
 
-    video?.addEventListener('ended',()=>showStory(current+1));
+    video?.addEventListener('ended',()=>show(current+1));
 
     muteBtn?.addEventListener('click',(e)=>{
       e.stopPropagation();
-      const willUnmute = video.muted;
-      videos.forEach(v=>{ if(v) v.muted = true; });
-      video.muted = !willUnmute;
-
-      reels.forEach((r,idx)=>{
-        const b = r.querySelector('.reel-mute');
-        if(b) b.dataset.muted = videos[idx]?.muted ? 'true' : 'false';
-      });
+      const unmute=video.muted;
+      videos.forEach(v=>{if(v)v.muted=true});
+      video.muted=!unmute;
     });
   });
 
-  document.addEventListener('keydown',(e)=>{
-    if(e.key === 'ArrowLeft') showStory(current+1);
-    if(e.key === 'ArrowRight') showStory(current-1);
-  });
+  show(0,false);
 
-  showStory(0,false);
-
-  const section = document.querySelector('.lookbook');
+  const section=document.querySelector('.lookbook');
   if(section){
-    const observer = new IntersectionObserver((entries)=>{
+    const obs=new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){
           ensureLoaded(current);
@@ -1711,7 +1788,7 @@ form.addEventListener('submit',async(e)=>{
         }
       });
     },{threshold:.45});
-    observer.observe(section);
+    obs.observe(section);
   }
 })();
 
