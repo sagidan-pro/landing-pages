@@ -353,12 +353,100 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   }
 }
 
+
+@media(min-width:760px){
+  .hero{
+    grid-template-columns:55% 45%;
+    min-height:760px;
+  }
+
+  .hero-brand{
+    min-height:760px;
+    padding:60px 58px 54px;
+    justify-content:center;
+  }
+
+  .barber-bubble{
+    margin-bottom:26px;
+    font-size:24px;
+    padding:14px 24px;
+    transform-origin:center;
+  }
+
+  .brand-title{
+    font-size:clamp(82px,8.7vw,148px);
+    line-height:.9;
+    letter-spacing:-.06em;
+    max-width:92%;
+  }
+
+  .booking-area{
+    padding:42px 34px;
+    align-items:center;
+  }
+
+  .booking-card{
+    max-width:540px;
+    padding:30px 28px 26px;
+    border-radius:26px;
+    box-shadow:
+      0 22px 56px rgba(44,33,18,.11),
+      inset 0 1px 0 rgba(255,255,255,.72);
+  }
+
+  .booking-card h2{
+    font-size:36px;
+    margin-bottom:20px;
+  }
+
+  .service-option span{
+    min-height:60px;
+  }
+
+  .submit{
+    min-height:62px;
+  }
+
+  .ig-top{
+    top:28px;
+    left:auto;
+    right:28px;
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    box-shadow:0 10px 22px rgba(0,0,0,.22);
+  }
+}
+
+
+@media(max-width:759px){
+  .hero-brand{
+    min-height:320px;
+    padding:74px 18px 36px;
+  }
+  .barber-bubble{
+    margin-bottom:22px;
+  }
+  .brand-title{
+    font-size:clamp(54px,17vw,84px);
+  }
+  .booking-area{
+    padding:12px;
+  }
+  .booking-card{
+    padding:22px 18px 20px;
+  }
+}
+
 </style>
 </head>
 <body>
 <main class="shell">
 <section class="hero">
 
+
+
+  <div class="hero-brand">
 <a class="ig-top" href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener" aria-label="Instagram">
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" stroke="white" stroke-width="2.2"/>
@@ -366,8 +454,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     <circle cx="17.25" cy="6.85" r="1.15" fill="white"/>
   </svg>
 </a>
-
-  <div class="hero-brand">
 
 <div class="barber-bubble" aria-label="Barber">
   <span class="barber-word">Barber</span>
