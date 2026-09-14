@@ -502,54 +502,740 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     padding:22px 18px 20px;
   }
 }
+
+/* ===== TAL BITTON WOW BOOKING ===== */
+.hero-wow{
+  min-height:760px!important;
+  display:grid!important;
+  grid-template-columns:46% 54%!important;
+  background:#0a0a0a!important;
+  border-radius:30px!important;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.18);
+}
+
+.booking-wow{
+  position:relative;
+  padding:34px!important;
+  background:
+    radial-gradient(circle at 8% 4%,rgba(224,201,151,.28),transparent 25%),
+    radial-gradient(circle at 90% 88%,rgba(255,255,255,.72),transparent 28%),
+    linear-gradient(145deg,#e7dece 0%,#f5efe6 48%,#ddd2bf 100%)!important;
+}
+
+.booking-wow:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,transparent 0 96%,rgba(158,121,65,.35) 100%);
+  pointer-events:none;
+}
+
+.booking-card-wow{
+  max-width:590px!important;
+  min-height:690px;
+  padding:36px 34px 28px!important;
+  border-radius:34px!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.83),rgba(247,242,232,.68))!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  box-shadow:
+    0 35px 80px rgba(62,46,24,.16),
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(147,114,64,.08)!important;
+  backdrop-filter:blur(34px) saturate(155%)!important;
+  -webkit-backdrop-filter:blur(34px) saturate(155%)!important;
+}
+
+.booking-card-wow:before{
+  width:230px!important;
+  height:230px!important;
+  background:radial-gradient(circle,rgba(221,196,139,.22),transparent 68%)!important;
+  top:-92px!important;
+  left:-80px!important;
+}
+.booking-card-wow:after{
+  width:260px!important;
+  height:260px!important;
+  background:radial-gradient(circle,rgba(20,20,20,.045),transparent 66%)!important;
+}
+
+.booking-eyebrow{
+  font-size:10px;
+  letter-spacing:.28em;
+  color:#8d806e;
+  direction:ltr;
+  text-align:right;
+  margin-bottom:13px;
+  font-weight:700;
+}
+.booking-card-wow h2{
+  font-size:54px!important;
+  margin:0 0 10px!important;
+  color:#0b0b0b!important;
+  letter-spacing:-.06em!important;
+  line-height:.95!important;
+}
+.booking-intro{
+  margin:0 0 26px;
+  color:#6c6459;
+  font-size:15px;
+  line-height:1.5;
+}
+
+.booking-card-wow .field{margin-bottom:18px}
+.booking-card-wow label{
+  color:#292621!important;
+  font-size:13px!important;
+  margin-bottom:8px!important;
+}
+
+.service-grid{
+  gap:10px!important;
+}
+.booking-card-wow .service-option span{
+  min-height:58px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(104,91,72,.26)!important;
+  background:rgba(255,255,255,.28)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85)!important;
+  font-size:16px!important;
+  transition:.25s ease!important;
+}
+.booking-card-wow .service-option span:hover{
+  transform:translateY(-1px);
+  border-color:rgba(104,91,72,.45)!important;
+}
+.booking-card-wow .service-option input:checked + span{
+  background:#111!important;
+  color:#fff!important;
+  border-color:#111!important;
+  box-shadow:0 10px 24px rgba(0,0,0,.16)!important;
+}
+
+.input-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.input-shell{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:56px;
+  padding:0 14px;
+  border:1px solid rgba(106,94,77,.22);
+  border-radius:16px;
+  background:rgba(255,255,255,.28);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82);
+  transition:.2s ease;
+}
+.input-shell:focus-within{
+  border-color:rgba(111,86,48,.55);
+  background:rgba(255,255,255,.44);
+  box-shadow:0 0 0 3px rgba(171,135,78,.08), inset 0 1px 0 rgba(255,255,255,.9);
+}
+.input-shell svg{
+  width:19px;
+  height:19px;
+  color:#6e665d;
+  flex:0 0 auto;
+}
+.input-shell input{
+  border:0!important;
+  padding:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  font-size:16px!important;
+  min-width:0;
+}
+.input-shell input:focus{border:0!important}
+
+.booking-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(88,75,56,.24),transparent);
+  margin:6px 0 18px;
+}
+.field-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.field-head label{margin:0!important}
+.field-note{
+  font-size:11px;
+  color:#918777;
+}
+.date-shell input{
+  direction:ltr;
+  text-align:right;
+  color:#111;
+}
+
+.time-slots{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  min-height:46px;
+}
+.slot-btn{
+  border:1px solid rgba(106,94,77,.22);
+  background:rgba(255,255,255,.28);
+  border-radius:13px;
+  min-height:43px;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:700;
+  color:#23201d;
+  cursor:pointer;
+  transition:.2s ease;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.slot-btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(97,76,47,.48);
+}
+.slot-btn.is-selected{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+  box-shadow:0 8px 18px rgba(0,0,0,.16);
+}
+.slots-empty,.slots-loading{
+  grid-column:1/-1;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed rgba(106,94,77,.25);
+  border-radius:13px;
+  color:#8c8376;
+  font-size:13px;
+}
+
+.submit-wow{
+  margin-top:10px!important;
+  min-height:66px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(195,151,82,.56)!important;
+  background:
+    linear-gradient(180deg,#1c1c1c,#0a0a0a)!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.09),
+    0 0 0 3px rgba(183,142,78,.06)!important;
+  letter-spacing:-.02em;
+}
+.submit-wow:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:
+    0 20px 42px rgba(0,0,0,.22),
+    inset 0 1px 0 rgba(255,255,255,.1),
+    0 0 0 4px rgba(183,142,78,.08)!important;
+}
+.submit-arrow{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  display:grid;
+  place-items:center;
+  font-size:18px;
+}
+.booking-foot{
+  text-align:center;
+  margin-top:18px;
+  font-size:9px;
+  letter-spacing:.34em;
+  color:#9a8f7f;
+  direction:ltr;
+}
+
+.brand-wow{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 25% 35%,rgba(207,169,105,.12),transparent 26%),
+    linear-gradient(135deg,#121212 0%,#090909 60%,#15130f 100%)!important;
+  min-height:760px!important;
+  padding:40px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.brand-wow:before{
+  content:"";
+  position:absolute;
+  top:-12%;
+  left:-2%;
+  width:2px;
+  height:125%;
+  background:linear-gradient(180deg,transparent,#cfaa67 25%,#f0d6a1 50%,#8d6c3f 72%,transparent);
+  box-shadow:0 0 18px rgba(217,177,105,.38);
+}
+.brand-wow:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(115deg,transparent 0 72%,rgba(255,255,255,.018) 72.2% 73%,transparent 73.2%);
+  pointer-events:none;
+}
+.brand-center{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  width:100%;
+}
+.brand-wow .barber-bubble{
+  margin:0 auto 28px!important;
+  background:rgba(15,15,15,.62)!important;
+  color:#fff!important;
+  border:1px solid rgba(211,172,105,.6)!important;
+  box-shadow:
+    0 16px 42px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+.brand-wow .brand-title{
+  font-size:clamp(92px,8.8vw,158px)!important;
+  max-width:none!important;
+  line-height:.87!important;
+  letter-spacing:-.065em!important;
+}
+.brand-wow .brand-title .dot{color:#fff!important}
+.brand-tagline{
+  margin-top:20px;
+  color:#a99e8e;
+  font-size:12px;
+  letter-spacing:.42em;
+  direction:ltr;
+}
+.brand-corner{
+  position:absolute;
+  right:34px;
+  bottom:30px;
+  z-index:3;
+  font-size:10px;
+  letter-spacing:.28em;
+  color:#a99e8e;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  direction:ltr;
+}
+.brand-corner span{
+  display:block;
+  width:34px;
+  height:1px;
+  background:#b59564;
+}
+.brand-orbit{
+  position:absolute;
+  border:1px solid rgba(201,161,99,.22);
+  border-radius:50%;
+  pointer-events:none;
+}
+.orbit-one{
+  width:820px;
+  height:820px;
+  right:-560px;
+  bottom:-420px;
+}
+.orbit-two{
+  width:560px;
+  height:560px;
+  right:-390px;
+  bottom:-250px;
+  border-color:rgba(255,255,255,.05);
+}
+.brand-glow{
+  position:absolute;
+  width:340px;
+  height:340px;
+  border-radius:50%;
+  background:rgba(197,155,87,.08);
+  filter:blur(80px);
+  left:4%;
+  top:18%;
+  pointer-events:none;
+}
+.brand-wow .ig-top{
+  top:28px!important;
+  right:28px!important;
+  left:auto!important;
+}
+
+.success-wow{
+  padding:90px 20px!important;
+}
+.success-wow h3{
+  color:#0b0b0b!important;
+  font-family:"Assistant",Arial,sans-serif!important;
+  font-size:48px!important;
+  letter-spacing:-.05em;
+}
+.success-wow p{
+  font-size:18px;
+}
+
+@media(max-width:759px){
+  .hero-wow{
+    display:flex!important;
+    flex-direction:column!important;
+    border-radius:0 0 28px 28px!important;
+    min-height:auto!important;
+  }
+  .brand-wow{
+    order:1;
+    min-height:330px!important;
+    padding:70px 18px 40px!important;
+  }
+  .booking-wow{
+    order:2;
+    padding:12px!important;
+  }
+  .booking-card-wow{
+    min-height:auto;
+    padding:26px 18px 22px!important;
+    border-radius:26px!important;
+  }
+  .booking-card-wow h2{
+    font-size:44px!important;
+  }
+  .booking-intro{
+    font-size:14px;
+    margin-bottom:22px;
+  }
+  .input-grid{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  .time-slots{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .brand-wow .brand-title{
+    font-size:clamp(54px,17vw,84px)!important;
+  }
+  .brand-tagline{
+    font-size:9px;
+    letter-spacing:.27em;
+  }
+  .brand-corner{
+    right:18px;
+    bottom:18px;
+  }
+  .brand-wow .ig-top{
+    top:16px!important;
+    right:16px!important;
+  }
+}
+
+
+/* ===== Premium availability slots v2 ===== */
+.time-field{
+  margin-top:4px;
+}
+.time-head{
+  align-items:flex-end!important;
+  margin-bottom:12px!important;
+}
+.time-head > div:first-child{
+  min-width:0;
+}
+.time-caption{
+  margin-top:4px;
+  color:#978c7e;
+  font-size:11px;
+  line-height:1.3;
+}
+.availability-badge{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:0 10px;
+  border:1px solid rgba(98,82,59,.15);
+  border-radius:999px;
+  background:rgba(255,255,255,.36);
+  color:#6f6558;
+  font-size:10px;
+  font-weight:700;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+}
+.time-slots{
+  display:flex!important;
+  flex-direction:column;
+  gap:13px!important;
+  min-height:84px;
+}
+.slot-group{
+  display:grid;
+  grid-template-columns:88px 1fr;
+  gap:12px;
+  align-items:start;
+}
+.slot-group-label{
+  padding-top:9px;
+  color:#8b806f;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.slot-group-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+}
+.slot-btn{
+  position:relative;
+  min-height:46px!important;
+  border-radius:14px!important;
+  border:1px solid rgba(91,76,55,.16)!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.52),rgba(255,255,255,.24))!important;
+  color:#25211c!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 6px 18px rgba(61,47,29,.035)!important;
+  overflow:hidden;
+  transform:translateY(0);
+}
+.slot-btn:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(208,167,101,.13),transparent 55%);
+  opacity:0;
+  transition:.22s ease;
+}
+.slot-btn:hover{
+  transform:translateY(-2px)!important;
+  border-color:rgba(159,119,61,.38)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    0 10px 22px rgba(61,47,29,.08)!important;
+}
+.slot-btn:hover:before{
+  opacity:1;
+}
+.slot-btn.is-selected{
+  background:
+    linear-gradient(180deg,#1d1d1d,#0a0a0a)!important;
+  color:#fff!important;
+  border-color:#0c0c0c!important;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 0 2px rgba(183,142,78,.11)!important;
+}
+.slot-btn.is-selected:after{
+  content:"✓";
+  position:absolute;
+  top:6px;
+  left:7px;
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#c59c5f;
+  color:#111;
+  font-size:10px;
+  font-weight:900;
+}
+.slots-empty,.slots-loading{
+  min-height:84px!important;
+  border:1px dashed rgba(110,91,65,.2)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.2);
+  display:flex!important;
+  flex-direction:column;
+  gap:7px;
+  align-items:center;
+  justify-content:center;
+  color:#8d8273!important;
+  font-size:12px!important;
+}
+.slots-empty-icon{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(111,91,63,.16);
+  background:rgba(255,255,255,.35);
+  font-size:17px;
+}
+.slots-loading{
+  position:relative;
+}
+.slots-loading:before{
+  content:"";
+  width:24px;
+  height:24px;
+  border:2px solid rgba(40,40,40,.12);
+  border-top-color:#222;
+  border-radius:50%;
+  animation:slotSpin .8s linear infinite;
+}
+@keyframes slotSpin{to{transform:rotate(360deg)}}
+.slot-btn{
+  animation:slotIn .32s ease both;
+}
+@keyframes slotIn{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:759px){
+  .slot-group{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+  .slot-group-label{
+    padding-top:0;
+  }
+  .slot-group-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .availability-badge{
+    max-width:118px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+}
+
 </style>
 </head>
 <body>
 <main class="shell">
-<section class="hero">
-  <div class="hero-brand">
-<a class="ig-top" href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener" aria-label="Instagram">
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" stroke="white" stroke-width="2.2"/>
-    <circle cx="12" cy="12" r="4.15" stroke="white" stroke-width="2.2"/>
-    <circle cx="17.25" cy="6.85" r="1.15" fill="white"/>
-  </svg>
-</a>
 
-<div class="barber-bubble" aria-label="Barber">
-  <span class="barber-word">Barber</span>
-  <span class="barber-emoji" aria-hidden="true">💈</span>
-</div>
-
-<h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1></div>
-  <div class="booking-area">
-    <div class="booking-card">
+<section class="hero hero-wow">
+  <div class="booking-area booking-wow">
+    <div class="booking-card booking-card-wow">
       <div id="formBox">
+        <div class="booking-eyebrow">TAL BITTON · BOOKING</div>
         <h2>קביעת תור</h2>
-        <p class="sub">בחרו שירות, יום ושעה</p>
-        <form id="bookingForm" name="barber-booking">
-          
-          
-          <div class="field">
+        <p class="booking-intro">בוחרים שירות, יום ושעה פנויה. מכאן אנחנו דואגים לכל השאר.</p>
+
+        <form id="bookingForm">
+          <div class="field service-field">
             <label>מה תרצו?</label>
             <div class="service-grid">
-              <label class="service-option"><input type="radio" name="service" value="תספורת" checked required><span>תספורת</span></label>
-              <label class="service-option"><input type="radio" name="service" value="תספורת + זקן" required><span>תספורת + זקן</span></label>
+              <label class="service-option">
+                <input type="radio" name="service" value="תספורת" checked required>
+                <span>תספורת</span>
+              </label>
+              <label class="service-option">
+                <input type="radio" name="service" value="תספורת + זקן" required>
+                <span>תספורת + זקן</span>
+              </label>
             </div>
           </div>
-          <div class="field"><label for="name">שם מלא</label><input id="name" name="name" type="text" autocomplete="name" placeholder="השם שלך" required></div>
-          <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" required></div>
-          <div class="row">
-            <div class="field"><label for="date">יום</label><input id="date" name="date" type="date" required></div>
-            <div class="field"><label for="time">שעה</label><select id="time" name="time" required><option value="">בחרו שעה</option></select></div>
+
+          <div class="input-grid">
+            <div class="field icon-field">
+              <label for="name">שם מלא</label>
+              <div class="input-shell">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8c0-3.3 3.1-6 7-6s7 2.7 7 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="השם שלך" required>
+              </div>
+            </div>
+
+            <div class="field icon-field">
+              <label for="phone">טלפון</label>
+              <div class="input-shell">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.4 3.8 4.8 5.2c-.8.4-1.1 1.3-.8 2.1 2.2 5.8 6.8 10.4 12.6 12.6.8.3 1.7 0 2.1-.8l1.4-2.6c.4-.8.2-1.8-.6-2.3l-3-1.8c-.7-.4-1.5-.3-2.1.2l-1.3 1.3a13.1 13.1 0 0 1-3-3l1.3-1.3c.5-.6.6-1.4.2-2.1l-1.8-3c-.5-.9-1.5-1.1-2.4-.7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X-XXXXXXX" required>
+              </div>
+            </div>
           </div>
-          <button class="submit" type="submit">קביעת התור</button>
+
+          <div class="booking-divider"></div>
+
+          <div class="field date-field">
+            <div class="field-head">
+              <label for="date">תאריך</label>
+              <span class="field-note">בחרו יום פנוי</span>
+            </div>
+            <div class="input-shell date-shell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <input id="date" name="date" type="date" required>
+            </div>
+          </div>
+
+          <div class="field time-field">
+            <div class="field-head time-head">
+              <div>
+                <label>בחרו שעה</label>
+                <div class="time-caption">רק שעות פנויות מוצגות כאן</div>
+              </div>
+              <span class="availability-badge" id="slotsNote">בחרו תאריך</span>
+            </div>
+            <input id="time" name="time" type="hidden" required>
+            <div class="time-slots" id="timeSlots">
+              <div class="slots-empty">
+                <span class="slots-empty-icon">◷</span>
+                <span>בחרו תאריך כדי לראות שעות פנויות</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="submit submit-wow" type="submit">
+            <span>קביעת התור</span>
+            <span class="submit-arrow" aria-hidden="true">←</span>
+          </button>
+
+          <div class="booking-foot">TAL BITTON · BARBER · TLV</div>
         </form>
       </div>
-      <div class="success" id="successBox"><div class="check">✓</div><h3>התור נשלח</h3><p id="successText">קיבלנו את הפרטים שלך.</p></div>
+
+      <div class="success success-wow" id="successBox">
+        <div class="check">✓</div>
+        <div class="booking-eyebrow">APPOINTMENT CONFIRMED</div>
+        <h3>התור נקבע</h3>
+        <p id="successText">נתראה בקרוב.</p>
+      </div>
     </div>
   </div>
+
+  <div class="hero-brand brand-wow">
+    <a class="ig-top" href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" stroke="white" stroke-width="2.2"/>
+        <circle cx="12" cy="12" r="4.15" stroke="white" stroke-width="2.2"/>
+        <circle cx="17.25" cy="6.85" r="1.15" fill="white"/>
+      </svg>
+    </a>
+
+    <div class="brand-orbit orbit-one"></div>
+    <div class="brand-orbit orbit-two"></div>
+    <div class="brand-glow"></div>
+
+    <div class="brand-center">
+      <div class="barber-bubble">
+        <span>Barber</span>
+        <span class="barber-emoji" aria-hidden="true">💈</span>
+      </div>
+
+      <h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1>
+      <div class="brand-tagline">GOOD HAIR · BETTER YOU</div>
+    </div>
+
+    <div class="brand-corner">TLV <span></span></div>
+  </div>
 </section>
+
 
 <section class="lookbook">
   <div class="section-kicker">עבודות אחרונות</div>
@@ -599,8 +1285,11 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 
 <script>
 
+
 const dateInput=document.getElementById('date');
-const timeSelect=document.getElementById('time');
+const timeInput=document.getElementById('time');
+const timeSlots=document.getElementById('timeSlots');
+const slotsNote=document.getElementById('slotsNote');
 const form=document.getElementById('bookingForm');
 const formBox=document.getElementById('formBox');
 const successBox=document.getElementById('successBox');
@@ -608,62 +1297,130 @@ const successText=document.getElementById('successText');
 const submitBtn=form.querySelector('.submit');
 
 function pad(n){return String(n).padStart(2,'0')}
+
 function setMinDate(){
   const now=new Date();
   dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
 }
 setMinDate();
 
+function setSlotsState(type,text){
+  timeInput.value='';
+  timeSlots.innerHTML=`<div class="${type}">${text}</div>`;
+}
+
+function renderSlots(slots){
+  timeSlots.innerHTML='';
+  timeInput.value='';
+
+  if(!slots?.length){
+    timeSlots.innerHTML=`
+      <div class="slots-empty">
+        <span class="slots-empty-icon">×</span>
+        <span>אין שעות פנויות ביום הזה</span>
+      </div>`;
+    slotsNote.textContent='אין זמינות';
+    return;
+  }
+
+  slotsNote.textContent=`${slots.length} שעות פנויות`;
+
+  const groups=[
+    {label:'בוקר', from:0, to:12},
+    {label:'צהריים', from:12, to:16},
+    {label:'אחה״צ / ערב', from:16, to:24}
+  ];
+
+  groups.forEach(group=>{
+    const groupSlots=slots.filter(slot=>{
+      const hour=Number(slot.split(':')[0]);
+      return hour>=group.from && hour<group.to;
+    });
+
+    if(!groupSlots.length) return;
+
+    const wrap=document.createElement('div');
+    wrap.className='slot-group';
+
+    const label=document.createElement('div');
+    label.className='slot-group-label';
+    label.textContent=group.label;
+
+    const grid=document.createElement('div');
+    grid.className='slot-group-grid';
+
+    groupSlots.forEach((slot,index)=>{
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='slot-btn';
+      btn.textContent=slot;
+      btn.dataset.value=slot;
+      btn.style.animationDelay=`${index*28}ms`;
+
+      btn.addEventListener('click',()=>{
+        timeSlots.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('is-selected'));
+        btn.classList.add('is-selected');
+        timeInput.value=slot;
+      });
+
+      grid.appendChild(btn);
+    });
+
+    wrap.appendChild(label);
+    wrap.appendChild(grid);
+    timeSlots.appendChild(wrap);
+  });
+}
+
 async function loadAvailability(){
   const date=dateInput.value;
   const service=form.querySelector('input[name="service"]:checked')?.value || '';
-  timeSelect.innerHTML='<option value="">טוען שעות...</option>';
-  timeSelect.disabled=true;
 
   if(!date){
-    timeSelect.innerHTML='<option value="">בחרו קודם יום</option>';
+    slotsNote.textContent='בחרו קודם תאריך';
+    timeSlots.innerHTML='<div class="slots-empty"><span class="slots-empty-icon">◷</span><span>בחרו תאריך כדי לראות שעות פנויות</span></div>';
     return;
   }
+
+  slotsNote.textContent='בודקים זמינות...';
+  timeSlots.innerHTML='<div class="slots-loading"><span>בודקים את היומן...</span></div>';
 
   try{
     const params=new URLSearchParams({date,service});
     const res=await fetch(`/.netlify/functions/availability?${params.toString()}`);
     const data=await res.json();
+
     if(!res.ok) throw new Error(data.error || 'availability failed');
-
-    timeSelect.innerHTML='<option value="">בחרו שעה</option>';
-    if(!data.slots?.length){
-      timeSelect.innerHTML='<option value="">אין שעות פנויות ביום הזה</option>';
-      return;
-    }
-
-    data.slots.forEach(slot=>{
-      const opt=document.createElement('option');
-      opt.value=slot;
-      opt.textContent=slot;
-      timeSelect.appendChild(opt);
-    });
+    renderSlots(data.slots);
   }catch(err){
     console.error(err);
-    timeSelect.innerHTML='<option value="">לא הצלחנו לטעון שעות</option>';
-  }finally{
-    timeSelect.disabled=false;
+    slotsNote.textContent='שגיאה בטעינה';
+    setSlotsState('slots-empty','לא הצלחנו לטעון שעות כרגע');
   }
 }
 
 dateInput.addEventListener('change',loadAvailability);
-form.querySelectorAll('input[name="service"]').forEach(el=>el.addEventListener('change',()=>{
-  if(dateInput.value) loadAvailability();
-}));
+
+form.querySelectorAll('input[name="service"]').forEach(el=>{
+  el.addEventListener('change',()=>{
+    if(dateInput.value) loadAvailability();
+  });
+});
 
 form.addEventListener('submit',async(e)=>{
   e.preventDefault();
+
+  if(!timeInput.value){
+    alert('בחרו שעה פנויה לפני קביעת התור.');
+    return;
+  }
+
   const fd=new FormData(form);
   const payload=Object.fromEntries(fd.entries());
 
   submitBtn.disabled=true;
-  const oldText=submitBtn.textContent;
-  submitBtn.textContent='בודקים ומאשרים...';
+  const oldText=submitBtn.querySelector('span')?.textContent || 'קביעת התור';
+  if(submitBtn.querySelector('span')) submitBtn.querySelector('span').textContent='מאשרים את התור...';
 
   try{
     const res=await fetch('/.netlify/functions/book',{
@@ -671,6 +1428,7 @@ form.addEventListener('submit',async(e)=>{
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)
     });
+
     const data=await res.json();
 
     if(res.status===409){
@@ -678,6 +1436,7 @@ form.addEventListener('submit',async(e)=>{
       await loadAvailability();
       return;
     }
+
     if(!res.ok) throw new Error(data.error || 'booking failed');
 
     successText.textContent=`${payload.service} · ${payload.date} · ${payload.time}`;
@@ -688,7 +1447,7 @@ form.addEventListener('submit',async(e)=>{
     alert('לא הצלחנו לקבוע את התור כרגע. נסו שוב בעוד רגע.');
   }finally{
     submitBtn.disabled=false;
-    submitBtn.textContent=oldText;
+    if(submitBtn.querySelector('span')) submitBtn.querySelector('span').textContent=oldText;
   }
 });
 
