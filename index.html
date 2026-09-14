@@ -1241,6 +1241,28 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
   .story-controls{margin-top:12px}
 }
 
+
+/* ===== date picker reliability fix ===== */
+.date-shell{
+  position:relative;
+  cursor:pointer;
+}
+.date-shell input[type="date"]{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  inset:auto!important;
+  border:0!important;
+  padding:0!important;
+}
+.date-shell:focus{
+  outline:none;
+  border-color:rgba(159,119,61,.52)!important;
+  box-shadow:0 0 0 3px rgba(171,135,78,.10), inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+
 </style>
 </head>
 <body>
@@ -1291,20 +1313,13 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
               <label for="date">תאריך</label>
               <span class="field-note">בחרו יום פנוי</span>
             </div>
-            <label class="input-shell date-shell" for="date">
+            <div class="input-shell date-shell" id="dateShell" role="button" tabindex="0" aria-label="בחרו תאריך">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
               <span class="date-display" id="dateDisplay">בחרו תאריך</span>
               <span class="date-chevron" aria-hidden="true">⌄</span>
               <input id="date" name="date" type="date" required>
-            </label>
+            </div>
           </div>
-
-          <div class="field time-field">
-            <div class="field-head time-head">
-              <div>
-                <label>בחרו שעה</label>
-                <div class="time-caption">רק שעות פנויות מוצגות כאן</div>
-              </div>
               <span class="availability-badge" id="slotsNote">בחרו תאריך</span>
             </div>
             <input id="time" name="time" type="hidden" required>
@@ -1413,6 +1428,7 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 
 const dateInput=document.getElementById('date');
 const dateDisplay=document.getElementById('dateDisplay');
+const dateShell=document.getElementById('dateShell');
 const timeInput=document.getElementById('time');
 const timeSlots=document.getElementById('timeSlots');
 const slotsNote=document.getElementById('slotsNote');
@@ -1429,6 +1445,28 @@ function setMinDate(){
   dateInput.min=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
 }
 setMinDate();
+
+function openDatePicker(){
+  try{
+    if(typeof dateInput.showPicker === 'function'){
+      dateInput.showPicker();
+    }else{
+      dateInput.focus();
+      dateInput.click();
+    }
+  }catch(e){
+    dateInput.focus();
+    dateInput.click();
+  }
+}
+dateShell?.addEventListener('click',openDatePicker);
+dateShell?.addEventListener('keydown',(e)=>{
+  if(e.key==='Enter' || e.key===' '){
+    e.preventDefault();
+    openDatePicker();
+  }
+});
+
 
 function setSlotsState(type,text){
   timeInput.value='';
