@@ -14,22 +14,113 @@
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Assistant",Arial,sans-serif;overflow-x:hidden}
 a{color:inherit}.shell{width:min(1500px,calc(100% - 14px));margin:0 auto;padding:7px 0 36px}
-.hero{background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;min-height:100svh;display:flex;flex-direction:column}
+.hero{background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;position:relative}
 .hero-brand{padding:36px 20px 24px;display:flex;align-items:center;justify-content:center;text-align:center;min-height:270px}
-.brand-title{margin:0;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:clamp(72px,21vw,150px);line-height:.78;letter-spacing:-.065em;direction:ltr;unicode-bidi:isolate;text-transform:lowercase}
+.brand-title{
+      margin:0;
+      font-family:"Assistant",Arial,sans-serif;
+      font-weight:700;
+      font-size:clamp(62px,18vw,146px);
+      line-height:.82;
+      letter-spacing:-.075em;
+      direction:ltr;
+      unicode-bidi:isolate;
+      text-transform:uppercase;
+      white-space:nowrap
+    }
 .brand-title .dot{color:var(--lime)}
-.booking-area{background:linear-gradient(160deg,#ece6da 0%,#f7f4ee 100%);padding:14px;flex:1;display:flex;align-items:center;justify-content:center}
-.booking-card{width:100%;max-width:560px;background:rgba(255,255,255,.94);border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:22px;box-shadow:0 20px 50px rgba(24,18,10,.10)}
-.booking-card h2{margin:0 0 5px;font-family:"Frank Ruhl Libre",serif;font-size:34px;letter-spacing:-.03em}
-.booking-card .sub{margin:0 0 22px;color:var(--muted);font-size:14px}
-.field{margin-bottom:15px} label{display:block;margin:0 0 7px;font-weight:700;font-size:13px}
-input,select{width:100%;appearance:none;border:1px solid var(--line);background:#fbfaf7;border-radius:14px;padding:15px 14px;font:inherit;font-size:16px;color:var(--ink);outline:none;transition:.2s}
-input:focus,select:focus{border-color:var(--ink);background:#fff;box-shadow:0 0 0 4px rgba(11,11,11,.05)}
-.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.service-option input{display:none}
-.service-option span{display:flex;align-items:center;justify-content:center;min-height:58px;padding:12px;border:1px solid var(--line);background:#fbfaf7;border-radius:14px;font-weight:700;cursor:pointer;transition:.2s;text-align:center}
-.service-option input:checked + span{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.booking-area{
+  background:#eee9df;
+  padding:0 14px 18px;
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center
+}
+.booking-card{
+  width:100%;
+  max-width:580px;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:26px 6px 10px;
+  box-shadow:none
+}
+.booking-card h2{
+  margin:0 0 22px;
+  font-family:"Assistant",Arial,sans-serif;
+  font-size:38px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.04em
+}
+.booking-card .sub{display:none}
+.field{margin-bottom:18px} label{
+  display:block;
+  margin:0 0 8px;
+  font-weight:600;
+  font-size:13px;
+  color:#4d4943
+}
+input,select{
+  width:100%;
+  appearance:none;
+  border:0;
+  border-bottom:1.5px solid #aaa398;
+  background:transparent;
+  border-radius:0;
+  padding:13px 2px 12px;
+  font:inherit;
+  font-size:18px;
+  color:var(--ink);
+  outline:none;
+  transition:.2s
+}
+input:focus,select:focus{
+  border-bottom-color:var(--ink);
+  background:transparent;
+  box-shadow:none
+}
+.service-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px
+}.service-option input{display:none}
+.service-option span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:64px;
+  padding:12px 10px;
+  border:1px solid #bdb6aa;
+  background:transparent;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+  text-align:center
+}
+.service-option input:checked + span{
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#fff;
+  box-shadow:none
+}
 .row{display:grid;grid-template-columns:1fr;gap:0}
-.submit{width:100%;border:0;border-radius:15px;background:var(--ink);color:#fff;min-height:58px;padding:16px 20px;font-size:18px;font-weight:800;cursor:pointer;transition:.2s;margin-top:3px}
+.submit{
+  width:100%;
+  border:0;
+  border-radius:999px;
+  background:var(--ink);
+  color:#fff;
+  min-height:64px;
+  padding:17px 22px;
+  font-size:19px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s;
+  margin-top:8px
+}
 .submit:hover{transform:translateY(-1px);background:#242424}
 .success{display:none;padding:36px 12px;text-align:center}.success .check{width:62px;height:62px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 18px;font-size:28px;font-weight:800}
 .success h3{margin:0 0 8px;font-family:"Frank Ruhl Libre",serif;font-size:30px}.success p{margin:0;color:var(--muted)}
@@ -50,13 +141,56 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
 .hero-brand{min-height:760px;padding:40px}.brand-title{font-size:clamp(100px,11vw,175px)}.booking-area{padding:34px}.booking-card{padding:30px}
 .row{grid-template-columns:1fr 1fr;gap:10px}.reel-grid{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible}.reel{max-width:none}
 .lookbook{padding-top:82px}.instagram a{padding:22px 26px}.map-wrap,.map-wrap iframe{min-height:440px}.nav-btn{max-width:520px;margin:0 auto;min-height:72px;font-size:27px}}
+
+.ig-top{
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:20;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+  background:radial-gradient(circle at 30% 110%,#ffd600 0 10%,#ff7a00 28%,#ff0169 52%,#d300c5 72%,#7638fa 100%);
+  box-shadow:0 10px 24px rgba(0,0,0,.28);
+  transition:.2s ease;
+}
+.ig-top:hover{transform:translateY(-2px) scale(1.03)}
+.ig-top svg{width:27px;height:27px;display:block}
+
+
+.booking-rule{
+  width:42px;
+  height:4px;
+  border-radius:999px;
+  background:var(--ink);
+  position:absolute;
+  margin-top:14px
+}
+.booking-area{position:relative}
+@media(min-width:760px){
+  .booking-area{align-items:center;padding:34px}
+  .booking-card{padding:0 18px}
+  .booking-rule{display:none}
+}
 </style>
 </head>
 <body>
 <main class="shell">
 <section class="hero">
-  <div class="hero-brand"><h1 class="brand-title">tal bitton<span class="dot">.</span></h1></div>
-  <div class="booking-area">
+
+<a class="ig-top" href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2" stroke="white" stroke-width="2.2"/>
+    <circle cx="12" cy="12" r="4.15" stroke="white" stroke-width="2.2"/>
+    <circle cx="17.25" cy="6.85" r="1.15" fill="white"/>
+  </svg>
+</a>
+
+  <div class="hero-brand"><h1 class="brand-title">TAL BITTON<span class="dot">.</span></h1></div>
+  <div class="booking-area"><div class="booking-rule" aria-hidden="true"></div>
     <div class="booking-card">
       <div id="formBox">
         <h2>קביעת תור</h2>
@@ -95,11 +229,6 @@ footer{padding:22px 4px 0;color:#918a7f;font-size:12px;text-align:center}
     <article class="reel"><div class="placeholder">וידאו 04</div></article>
   </div>
 </section>
-
-<section class="instagram">
-  <a href="https://www.instagram.com/talbitton91?stkn=MW1qemF3YThzMW85ZA==" target="_blank" rel="noopener"><span>לאינסטגרם של Tal</span><span class="ig-icon">◎</span></a>
-</section>
-
 <section class="location">
   <div class="map-wrap"><iframe src="https://embed.waze.com/iframe?zoom=16&lat=32.071900&lon=34.781689&ct=livemap" width="600" height="450" allowfullscreen></iframe></div>
   <div class="location-action"><a class="nav-btn" href="https://www.waze.com/ul?ll=32.071900%2C34.781689&navigate=yes" target="_blank" rel="noopener">נווטו אליי</a></div>
